@@ -2,35 +2,83 @@
 
 This project involves containerizing a Streamlit application using Docker, then deploying it on a Kubernetes cluster using deployment and service configuration files. The Dockerfile ensures that the application runs in a consistent environment, while the Kubernetes configuration files manage the deployment and networking aspects, making the application accessible to users.
 
-# Modular Code Overview
+# Healthcare Data Pipeline
 
-The Healthcare Data Pipeline project is divided into the following modules:
+## Modular Code Overview
 
-### 1. `app`
+### 1. Application (`app.py`)
 
-* `app.py`: Main application file
-* `requirements.txt`: Dependencies required to run the application
+The `app.py` file contains the Python code for the Streamlit application.
 
-### 2. `data`
+#### Data Fetching
 
-* `fetch_patients.py`: Fetches patient data from external API
-* `generate_healthcare_data.py`: Generates synthetic healthcare data
-* `generate_medication_data.py`: Generates synthetic medication data
-* `fetch_facilities.py`: Fetches healthcare facility data from external API
+* `fetch_patients()`: Retrieves 50 random patient records from an external API.
+* `fetch_facilities()`: Retrieves healthcare facility data from an external API.
 
-### 3. `transform`
+#### Data Generation
 
-* `transform_patients.py`: Transforms raw patient data into structured format
-* `assign_services_to_patients.py`: Assigns healthcare services to patients
-* `assign_medications_to_patients.py`: Assigns medications to patients
+* `generate_healthcare_data(num_records)`: Generates random healthcare service data.
+* `generate_medication_data(num_records)`: Generates random medication data.
 
-### 4. `visualize`
+#### Data Transformation
 
-* `visualize_service_cost_distribution.py`: Visualizes service cost distribution
-* `visualize_medication_cost_distribution.py`: Visualizes medication cost distribution
-* `visualize_service_count_by_type.py`: Visualizes service count by type
-* `visualize_medication_cost_over_time.py`: Visualizes medication cost over time
+* `transform_patients(data)`: Transforms raw patient data into a structured format.
+* `assign_services_to_patients(patients, services)`: Assigns healthcare services to patients.
+* `assign_medications_to_patients(patients, medications)`: Assigns medications to patients.
 
-### 5. `utils`
+#### Visualizations
 
-* `utils.py`: Utility functions for data processing and visualization
+* Bar charts for service cost distribution, medication cost distribution, and service count by type.
+* A line chart for medication cost over time.
+
+### 2. Docker Setup (`Dockerfile`)
+
+The `Dockerfile` is used to containerize the Streamlit application.
+
+#### Base Image
+
+* Specifies the base image (usually a Python image) to build upon.
+
+#### Dependency Installation
+
+* Installs the required Python packages.
+
+#### Copy Application Files
+
+* Copies the application files into the Docker image.
+
+#### Port Exposure
+
+* Exposes the necessary port for the Streamlit application.
+
+#### Run Command
+
+* Specifies the command to start the Streamlit app.
+
+### 3. Kubernetes Deployment Configuration (`deployment.yaml`)
+
+The `deployment.yaml` file is used to define the Kubernetes deployment.
+
+#### Metadata
+
+* Information such as the deployment name.
+
+#### Spec
+
+* Details about the replicas, Docker image to use, and the ports.
+
+#### Containers
+
+* Defines the container specifications, including image and ports.
+
+### 4. Kubernetes Service Configuration (`service.yaml`)
+
+The `service.yaml` file configures how the application is exposed to the network.
+
+#### Metadata
+
+* Information such as the service name.
+
+#### Spec
+
+* Details about the service type (ClusterIP, NodePort, or LoadBalancer) and the ports.

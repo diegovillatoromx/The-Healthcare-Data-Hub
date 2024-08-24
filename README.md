@@ -65,24 +65,20 @@ The `app.py` file contains the Python code for the Streamlit application.
 
 The `Dockerfile` is a critical component of the containerization process, serving as a blueprint for building a Docker image that encapsulates the Streamlit application.
 
-#### Dockerfile Elements
-
-```markdown
-### Base Image Specification
+#### Base Image Specification
 Specifies the foundation of the Docker image, typically leveraging a Python-based image as the starting point for the build process.
 
-### Dependency Installation
+#### Dependency Installation
 Ensures the installation of requisite Python packages, satisfying the application's dependencies and facilitating seamless execution.
 
-### Application File Inclusion
+#### Application File Inclusion
 Copies the application's source files into the Docker image, ensuring that all necessary components are present for successful execution.
 
-### Port Exposure
+#### Port Exposure
 Exposes the requisite port, enabling communication with the Streamlit application and facilitating user interaction.
 
-### Run Command Specification
+#### Run Command Specification
 Defines the command invoked to initiate the Streamlit application, orchestrating the execution of the app within the containerized environment.
-#### Dockerfile Specifications
 
 ```dockerfile
 FROM python:3.9   

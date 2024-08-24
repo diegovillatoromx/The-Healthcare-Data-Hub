@@ -6,7 +6,7 @@ This project involves containerizing a Streamlit application using Docker, then 
 
 ## Modular Code Overview
 
-### 1. Application (`app.py`)
+### 1. Application (`healthcarepipeline.py`)
 
 The `app.py` file contains the Python code for the Streamlit application.
 

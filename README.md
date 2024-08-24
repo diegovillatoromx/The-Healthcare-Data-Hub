@@ -141,3 +141,33 @@ spec:
     targetPort: 8501
   type: LoadBalancer
 ```
+## Project Workflow
+
+The following project workflow outlines the steps to build, deploy, and access the Streamlit application using Docker and Kubernetes:
+
+### 1. Building the Docker Image
+
+Create a Docker image of the Streamlit application using the Dockerfile.
+Command:
+```bash
+docker build -t your-docker-image-name
+```
+
+### 2. Pushing the Docker Image
+Push the Docker image to a container registry (e.g., Docker Hub).
+Command:
+```sh
+docker push your-docker-image-name
+```
+### 3. Deploying to Kubernetes
+Apply the Kubernetes deployment and service configurations to deploy the application.
+Commands:
+
+```sh
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+```
+
+### 4. Accessing the Application
+The Kubernetes service will expose the application, making it accessible via a network endpoint.
+Verify the application's accessibility by checking the service's external IP address or DNS name.

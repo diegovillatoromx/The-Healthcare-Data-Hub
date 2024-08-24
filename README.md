@@ -60,54 +60,27 @@ The `app.py` file contains the Python code for the Streamlit application.
 * Bar charts for service cost distribution, medication cost distribution, and service count by type.
 * A line chart for medication cost over time.
 
+
 ### 2. Docker Setup (`Dockerfile`)
 
-The `Dockerfile` is used to containerize the Streamlit application.
+The `Dockerfile` is used to containerize the Streamlit application. The following elements are typically included:
 
-#### Base Image
+#### Dockerfile Specifications
 
-* Specifies the base image (usually a Python image) to build upon.
+```dockerfile
+# Specifies the base image (usually a Python image)
+FROM python:3.9-slim
 
-#### Dependency Installation
+# Installs the required Python packages
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
-* Installs the required Python packages.
+# Copies the application files into the Docker image
+COPY . .
 
-#### Copy Application Files
+# Exposes the necessary port for the Streamlit application
+EXPOSE 8501
 
-* Copies the application files into the Docker image.
-
-#### Port Exposure
-
-* Exposes the necessary port for the Streamlit application.
-
-#### Run Command
-
-* Specifies the command to start the Streamlit app.
-
-### 3. Kubernetes Deployment Configuration (`deployment.yaml`)
-
-The `deployment.yaml` file is used to define the Kubernetes deployment.
-
-#### Metadata
-
-* Information such as the deployment name.
-
-#### Spec
-
-* Details about the replicas, Docker image to use, and the ports.
-
-#### Containers
-
-* Defines the container specifications, including image and ports.
-
-### 4. Kubernetes Service Configuration (`service.yaml`)
-
-The `service.yaml` file configures how the application is exposed to the network.
-
-#### Metadata
-
-* Information such as the service name.
-
-#### Spec
-
-* Details about the service type (ClusterIP, NodePort, or LoadBalancer) and the ports.
+# Command to start the Streamlit app
+CMD ["streamlit", "run", "app.py"]
+```

@@ -88,3 +88,35 @@ RUN pip install streamlit pandas requests
 EXPOSE 8501
 CMD ["streamlit","run","app.py","--server.port=8501","--server.address=0.0.0.0"]
 ```
+
+
+### Kubernetes Deployment Configuration (`deployment.yaml`)
+
+The `deployment.yaml` file serves as the configuration template for the Kubernetes deployment, encompassing essential specifications for successful deployment.
+
+#### Deployment Configuration
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: health-app-deploy
+spec:
+  selector:
+    matchLabels:
+      app: myapp
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp
+        image: hkseal/health-app-streamlit:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8501

@@ -5,6 +5,35 @@ This project involves containerizing a Streamlit application using Docker, then 
 # Healthcare Data Pipeline
 
 ## Modular Code Overview
+```sh
+healthcare-data-pipeline/
+├── app/
+│   ├── app.py
+│   ├── requirements.txt
+│   ├── data/
+│   │   ├── fetch_patients.py
+│   │   ├── fetch_facilities.py
+│   │   ├── generate_healthcare_data.py
+│   │   ├── generate_medication_data.py
+│   ├── transform/
+│   │   ├── transform_patients.py
+│   │   ├── assign_services_to_patients.py
+│   │   ├── assign_medications_to_patients.py
+│   ├── visualize/
+│   │   ├── visualize_service_cost_distribution.py
+│   │   ├── visualize_medication_cost_distribution.py
+│   │   ├── visualize_service_count_by_type.py
+│   │   ├── visualize_medication_cost_over_time.py
+├── docker/
+│   ├── Dockerfile
+│   ├── requirements.txt
+├── kubernetes/
+│   ├── deployment.yaml
+│   ├── service.yaml
+├── utils/
+│   ├── utils.py
+├── README.md
+```
 
 ### 1. Application (`healthcarepipeline.py`)
 

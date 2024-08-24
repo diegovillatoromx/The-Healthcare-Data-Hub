@@ -120,3 +120,24 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 8501
+```
+
+### Kubernetes Service Configuration (`service.yaml`)
+
+The `service.yaml` file defines the Kubernetes service configuration, specifying how the application is exposed to the network.
+
+#### Service Configuration
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: health-app-service
+spec:
+  selector:
+    app: myapp
+  ports:
+  - port: 8501
+    targetPort: 8501
+  type: LoadBalancer
+```

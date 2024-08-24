@@ -68,19 +68,10 @@ The `Dockerfile` is used to containerize the Streamlit application. The followin
 #### Dockerfile Specifications
 
 ```dockerfile
-# Specifies the base image (usually a Python image)
-FROM python:3.9-slim
-
-# Installs the required Python packages
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-
-# Copies the application files into the Docker image
-COPY . .
-
-# Exposes the necessary port for the Streamlit application
+FROM python:3.9   
+WORKDIR /app
+COPY . /app
+RUN pip install streamlit pandas requests
 EXPOSE 8501
-
-# Command to start the Streamlit app
-CMD ["streamlit", "run", "app.py"]
+CMD ["streamlit","run","app.py","--server.port=8501","--server.address=0.0.0.0"]
 ```
